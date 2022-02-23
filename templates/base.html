@@ -86,9 +86,13 @@
     </footer>
     <script>
         setTimeout(function () {
-            let messages = document.getElementById('msg');
-            let alert = new bootstrap.Alert(messages);
-            alert.close();
+            let messages = document.getElementsByClassName('alert');
+            console.log(messages)
+            for (x in messages) {
+                console.log(messages[x])
+                let alert = new bootstrap.Alert(messages[x]);
+                alert.close();
+            }
         }, 2500);
     </script>
 </body>

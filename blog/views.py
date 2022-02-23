@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
+from django.contrib import messages
 
 
 class PostList(generic.ListView):
@@ -49,7 +50,9 @@ class PostDetail(View):
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
             comment.post = post
+            messages.success(request,"Your Comment has been submitted. It is awaiting moderation")
             comment.save()
+            
         else:
             comment_form = CommentForm()
 
